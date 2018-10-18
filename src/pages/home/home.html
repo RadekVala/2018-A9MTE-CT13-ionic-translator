@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-input type="text" placeholder="Text for translation..."></ion-input>
-  <button ion-button full>Translate</button>
+  <ion-input [(ngModel)]="inputModel" #input type="text" placeholder="Text for translation..."></ion-input>
+  <button (click)="btnTranslateClicked(input.value)" ion-button full>Translate</button>
   <ion-card>
 
     <ion-card-header>
@@ -15,6 +15,7 @@
   
     <ion-card-content>
       <!-- TODO: ADD translation result here -->
+      {{ inputModel }}
     </ion-card-content>
   
   </ion-card>
