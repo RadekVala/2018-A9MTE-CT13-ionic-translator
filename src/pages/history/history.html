@@ -15,8 +15,8 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
-      vstup -> vystup
+    <ion-item *ngFor="let record of historyArray">
+      {{ record.from }} -> {{ record.to }}
     </ion-item>
   </ion-list>
 
