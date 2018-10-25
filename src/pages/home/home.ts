@@ -8,7 +8,8 @@ import { TranslationProvider } from '../../providers/translation/translation';
 })
 export class HomePage {
 
-  private inputModel:string = 'Test';
+  private inputModel:string = '';
+  private result:string;
 
   constructor(
     public navCtrl: NavController,
@@ -19,7 +20,15 @@ export class HomePage {
 
   public btnTranslateClicked (userInput:string):void {
     console.log('btn Clicked: ', this.inputModel);
-    this.translationProvider.http;
+    
+    let response = this.translationProvider.getTranslation(userInput);
+    // handle the response from API
+    response.subscribe(
+      (resp) => {
+        console.log(resp);
+        this.result = resp.responseData.translatedText;
+      }
+    );
   }
 
 }
