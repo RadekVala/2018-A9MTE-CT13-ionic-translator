@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TranslationProvider } from '../../providers/translation/translation';
 import { HistoryProvider } from '../../providers/history/history';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private translationProvider: TranslationProvider,
-    private historyProvider: HistoryProvider
+    private historyProvider: HistoryProvider,
+    private tts: TextToSpeech
   ) {
    
   }
@@ -32,8 +34,14 @@ export class HomePage {
 
         // save record to history
         this.historyProvider.saveToHistory(this.inputModel,this.result);
+
+        // speak the result
+        this.tts.speak(this.result)
+        .then(() => console.log('Success'))
+        .catch((reason: any) => console.log(reason));
       }
     );
+    
   }
 
 }
